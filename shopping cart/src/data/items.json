@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "name": "Wireless Headphones",
+        "price": 89.99,
+        "imgUrl": "/headphones.jpeg"
+    },
+    {
+        "id": 2,
+        "name": "Smartphone XYZ",
+        "price": 699.99,
+        "imgUrl": "/smartphone.jpg"
+    },
+    {
+        "id": 3,
+        "name": "4K Ultra HD Smart TV",
+        "price": 999.99,
+        "imgUrl": "/tv.jpeg"
+    },
+    {
+        "id": 4,
+        "name": "Gaming Laptop",
+        "price": 1299.99,
+        "imgUrl": "/gaming-laptop.jpeg"
+    },
+    {
+        "id": 5,
+        "name": "Bluetooth Speaker",
+        "price": 49.99,
+        "imgUrl": "/speaker.webp"
+    },
+    {
+        "id": 6,
+        "name": "Smartwatch",
+        "price": 199.99,
+        "imgUrl": "/smartwatch.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Portable SSD 1TB",
+        "price": 129.99,
+        "imgUrl": "/ssd.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Wireless Mouse",
+        "price": 29.99,
+        "imgUrl": "/mouse.avif"
+    },
+    {
+        "id": 9,
+        "name": "Mechanical Keyboard",
+        "price": 89.99,
+        "imgUrl": "/keyboard.webp"
+    },
+    {
+        "id": 10,
+        "name": "Action Camera",
+        "price": 299.99,
+        "imgUrl": "/camera.jpeg"
+    }
+]

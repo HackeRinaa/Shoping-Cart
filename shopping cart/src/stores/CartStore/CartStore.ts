@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, observable } from "mobx";
 
 export interface CartItem {
     id:number;
@@ -10,11 +10,14 @@ export interface CartItem {
 
 export class CartStore {
     readonly cart: Record<string,CartItem> = {};
-    
+    showCartOverlay = false;
 
 
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this, {
+            cart: observable,
+        });
+       
     }
 
     addToCart(item: CartItem) {
@@ -39,8 +42,13 @@ export class CartStore {
         }
     }
 
+    toggleCartOverlay() {
+        this.showCartOverlay = !this.showCartOverlay;
+    }
+
     get totalItems() {
-        return Object.keys(this.cart).length;
+        const totalQuantity = Object.values(this.cart).reduce((total, item) => total + item.quantity, 0);
+        return totalQuantity;
     }
 
     get totalPrice() {

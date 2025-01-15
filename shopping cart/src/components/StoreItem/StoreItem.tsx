@@ -7,17 +7,20 @@ import { observer } from "mobx-react-lite";
 
 const StoreItem: React.FC<StoreItemProps> = observer(({item}) => {
 
-  const quantinty:number = item.quantity || 0;
+  let quantity = cartStore.cart[item.id]?.quantity || 0;
 
-  const handleAddToCart = (item: CartItem) => {
+
+  const handleAddToCart = () => {
     if (!cartStore.cart[item.id]) {
-      item.quantity = 1;
-      cartStore.addToCart(item);
+      cartStore.addToCart({...item, quantity: 1});
+      quantity = 1;
     } else {
-      item.quantity += 1;
-      cartStore.updateQuantity(item.id, item.quantity);
+      cartStore.updateQuantity(item.id, cartStore.cart[item.id].quantity + 1);
+      quantity = cartStore.cart[item.id].quantity + 1;
     }
   };
+
+  
 
   return (
     <Card className="h-100 rounded shadow p-3 mb-3 bg-body card-hover">
@@ -28,10 +31,10 @@ const StoreItem: React.FC<StoreItemProps> = observer(({item}) => {
             <span className="ms-2 text-secondary">{formatCurrency(item.price)}</span>
           </Card.Title>
           <div className="mt-3 d-flex justify-content-center align-items-center">
-            {(quantinty === 0 ? (
+            {(quantity === 0 ? (
               <Button 
                 className="mb-2 py-2 px-4 rounded-pill"
-                onClick={() => handleAddToCart(item)}
+                onClick={() => handleAddToCart()}
               >
                  + Add to Cart
               </Button>
@@ -40,19 +43,19 @@ const StoreItem: React.FC<StoreItemProps> = observer(({item}) => {
                 <div className="d-flex align-items-center justify-content-center" style={{gap: ".5rem"}}>
                   <Button 
                     className="rounded d-flex align-items-center justify-content-center" style={{width: "2rem", height: "2rem"}}
-                    onClick={() => cartStore.updateQuantity(item.id, item.quantity+1)}
+                    onClick={() => cartStore.updateQuantity(item.id, quantity-1)}
                   >
                     -
                   </Button>
                   <div className=""> 
-                    <span className="fs-4 text-dark">{item.quantity}
+                    <span className="fs-4 text-dark">{quantity}
                       <span className="text-secondary fs-5"> in cart</span>
                     </span>
                   </div>
                   <Button 
                     className="rounded d-flex align-items-center justify-content-center" 
                     style={{width: "2rem", height: "2rem"}}
-                    onClick={() => cartStore.updateQuantity(item.id, item.quantity-1)}
+                    onClick={() => cartStore.updateQuantity(item.id, quantity+1)}
                   >
                     +
                   </Button>
